@@ -11,6 +11,9 @@ RowLayout {
     property alias stepSize: spinBoxWidget.stepSize
     property alias from: spinBoxWidget.from
     property alias to: spinBoxWidget.to
+    // Exposes the spin box hover state so that StyledToolTip children (which read
+    // `parent.hovered`) work the same way they do on ConfigSwitch.
+    readonly property alias hovered: spinBoxWidget.hovered
     spacing: 10
     Layout.leftMargin: 8
     Layout.rightMargin: 8

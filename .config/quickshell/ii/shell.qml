@@ -7,6 +7,7 @@
 ////@ pragma Env QT_SCALE_FACTOR=1
 
 import "modules/common"
+import "modules/common/desktopMediaWidget"
 import "services"
 import "panelFamilies"
 
@@ -21,6 +22,9 @@ ShellRoot {
 
     // Stuff for every panel family
     ReloadPopup {}
+
+    // Floating media controller (works for every panel family)
+    DesktopMediaWidget {}
 
     Component.onCompleted: {
         MaterialThemeLoader.reapplyTheme()

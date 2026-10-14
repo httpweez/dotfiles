@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell.Services.Mpris
 import qs.modules.common
+import qs.modules.common.functions
 import qs.modules.common.widgets
 import qs.modules.ii.mediaControls
 import qs.services
@@ -110,10 +111,12 @@ Item {
 
         ChromeButton {
             iconName: root.locked ? "lock" : "lock_open"
-            highlighted: root.locked
+            accented: root.locked
             tooltipText: root.locked
-                ? Translation.tr("Pinned to workspace %1 · click to show on every workspace").arg(Config.options.mediaWidget.workspace)
-                : Translation.tr("Shown on every workspace · click to pin to workspace %1").arg(root.currentWorkspace)
+                ? (Config.options.mediaWidget.lockAllWorkspaces
+                    ? Translation.tr("Behind windows on every workspace · click to float above every window")
+                    : Translation.tr("Behind windows on workspace %1 · click to float above every window").arg(Config.options.mediaWidget.workspace))
+                : Translation.tr("Floating above windows · click to pin behind windows on workspace %1").arg(root.currentWorkspace)
             onActivated: root.toggleLockRequested()
         }
     }
@@ -122,7 +125,7 @@ Item {
         id: chromeButton
         property string iconName
         property string tooltipText
-        property bool highlighted: false
+        property bool accented: false
 
         signal activated
 
@@ -133,7 +136,7 @@ Item {
         colBackgroundHover: Appearance.colors.colLayer0Hover
         colBackgroundToggled: Appearance.colors.colPrimary
         colBackgroundToggledHover: Appearance.colors.colPrimaryHover
-        toggled: chromeButton.highlighted
+        toggled: chromeButton.accented
         downAction: () => chromeButton.activated()
 
         contentItem: MaterialSymbol {
@@ -142,7 +145,7 @@ Item {
             iconSize: 18
             fill: 1
             text: chromeButton.iconName
-            color: chromeButton.highlighted ? Appearance.colors.colOnPrimary : Appearance.colors.colOnLayer1
+            color: chromeButton.accented ? Appearance.colors.colOnPrimary : Appearance.colors.colOnLayer1
         }
 
         StyledToolTip {

@@ -45,6 +45,11 @@ ApplicationWindow {
             component: "modules/settings/BackgroundConfig.qml"
         },
         {
+            name: Translation.tr("Media widget"),
+            icon: "music_note",
+            component: "modules/settings/MediaWidgetConfig.qml"
+        },
+        {
             name: Translation.tr("Interface"),
             icon: "bottom_app_bar",
             component: "modules/settings/InterfaceConfig.qml"

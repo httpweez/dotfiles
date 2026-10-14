@@ -223,6 +223,24 @@ Singleton {
                 }
             }
 
+            property JsonObject mediaWidget: JsonObject {
+                property bool enable: true
+                property string screen: "" // Empty means the primary screen
+                property real x: 80
+                property real y: 80
+                property real width: 400
+                property real height: 160
+                property bool showVisualizer: true
+                property bool showWhenLocked: false
+                property bool hideWhenFullscreen: true
+                property bool hideWhenNoPlayer: false
+                property bool lockToWorkspace: false
+                // When locked: stay visible on every workspace (just behind
+                // windows) instead of pinning to a single workspace.
+                property bool lockAllWorkspaces: false
+                property int workspace: 1
+            }
+
             property JsonObject bar: JsonObject {
                 property JsonObject autoHide: JsonObject {
                     property bool enable: false
@@ -399,7 +417,7 @@ Singleton {
 
             property JsonObject notifications: JsonObject {
                 property int timeout: 7000
-                property JsonObject monitor: JsonObject {
+                property JsonObject forceMonitor: JsonObject {
                     property bool enable: false
                     property string name: "" // Name of the monitor to show notifications on, like "eDP-1". Find out with 'hyprctl monitors' command
                 }
