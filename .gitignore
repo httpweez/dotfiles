@@ -1,0 +1,15 @@
+# Caches e temporários
+__pycache__/
+*.pyc
+*.log
+*.bak-*
+*.tmp
+.DS_Store
+
+# Segredos / credenciais que nunca devem ser versionados
+service.json
+cli.json
+*.key
+*.pem
+*_history
+.credentials
